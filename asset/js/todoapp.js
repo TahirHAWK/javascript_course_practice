@@ -4,11 +4,11 @@
     
     ourForm.addEventListener("submit", (e) => {
         e.preventDefault()
-        console.log(ourField)
+        console.log(ourField.value)
     })
     
-    let ourList = document.getElementById("ourList") 
-    console.log(ourList.textContent)
+    let ourList = document.getElementById("ourList").value 
+    console.log(ourList)
 
  
     
