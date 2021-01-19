@@ -1,0 +1,35 @@
+body{
+    background-color: white;
+}
+li {
+    border-radius: 25px;
+    border: 2px solid blueviolet;
+    padding: 30px;
+    width: 200px;
+    height: 120px;
+    margin: 2rem;
+
+}
+
+li:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+button {
+    background-color: blueviolet;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+
+input {
+    border-radius: 5px;
+    padding: 10px;
+    margin: 2rem;
+}
