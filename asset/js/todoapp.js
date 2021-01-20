@@ -1,16 +1,31 @@
 
     let ourForm = document.getElementById("ourForm")
     let ourField = document.getElementById("ourField")
-    
+    let ourList = document.getElementById("ourList")
+
+    let something = ""
+
     ourForm.addEventListener("submit", (e) => {
         e.preventDefault()
-        console.log(ourField.value)
+        createItem(ourField.value)
     })
     
-    let ourList = document.getElementById("ourList").value 
-    console.log(ourList)
+    function createItem(x) {
+        let ourHTML = `<li> ${x} <button onclick="deleteItem(this)">Delete</button></li>`
+        something = x
+        ourList.insertAdjacentHTML("beforeend", ourHTML)
+        ourField.value = ""
+        ourField.focus()
+        
 
- 
+    }
+
+    function deleteItem(elementToDelete) {
+        // alert(  `about "${something}", delete requested`)
+        elementToDelete.parentElement.remove()
+    } 
+    
+   
     
     
 
