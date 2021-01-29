@@ -4,6 +4,8 @@ let mongodb = require('mongodb')
 let app = express()
 let db
 
+app.use(express.static('public'))
+
 let connectionString = 'mongodb+srv://todoAppUser:todoAppUser@cluster0.ztdkz.mongodb.net/todoApp?retryWrites=true&w=majority'
 mongodb.connect( connectionString, {useNewUrlParser: true,
 useUnifiedTopology: true}, function(err, client){
@@ -12,6 +14,7 @@ useUnifiedTopology: true}, function(err, client){
   app.listen(3000)
 })
 
+app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
 app.get('/', function(request, response) {
@@ -42,7 +45,7 @@ app.get('/', function(request, response) {
             return `<li class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
             <span class="item-text">${item.text}</span>
             <div>
-              <button class="edit-me btn btn-secondary btn-sm mr-1">Edit</button>
+              <button data-id="${item._id}" class="edit-me btn btn-secondary btn-sm mr-1">Edit</button>
               <button class="delete-me btn btn-danger btn-sm">Delete</button>
             </div>
           </li>`
@@ -50,7 +53,9 @@ app.get('/', function(request, response) {
         </ul>
         
       </div>
-    <script>alert("hello")</script>  
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+      <script src="/browser.js"></script>  
     </body>
     </html>`)
   })
@@ -67,5 +72,13 @@ db.collection('items').insertOne({text: request.body.item}, function(){
 })
 })
 
+
+app.post('/update-item', function(request, response){
+  // console.log(request.body.text)
+  // response.send("success")
+  db.collection('items').findOneAndUpdate({_id: new mongodb.ObjectID(request.body.id)}, {$set: {text: request.body.text}}, function(){
+    response.send("success.")
+  })
+})
 
 
